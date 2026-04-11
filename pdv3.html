@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Espetinho Dos Primos - PDV</title>
+
+<style>
+
+/* RESET */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    font-family: "Segoe UI", Arial;
+
+    background: 
+        linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
+        url("esp.png");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+/* OVERLAY ESCURO GLOBAL (SEM QUEBRAR A IMAGEM) */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.35);
+    z-index: -1;
+}
+
+/* NAVBAR */
+.navbar {
+    display: flex;
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(10px);
+    padding: 10px;
+    gap: 10px;
+}
+
+.navbar button {
+    background: transparent;
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.navbar button:hover {
+    background: rgba(255,255,255,0.15);
+}
+
+.navbar .ativo {
+    background: #27ae60;
+}
+
+/* TELAS */
+.tela {
+    display: none;
+    padding: 20px;
+    animation: fade 0.3s ease;
+}
+
+.tela.ativa {
+    display: block;
+}
+
+@keyframes fade {
+    from {opacity: 0; transform: translateY(10px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+
+/* LAYOUT */
+.container {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+/* CARDS */
+.card {
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(8px);
+
+    padding: 15px;
+    border-radius: 12px;
+    flex: 1;
+
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+}
+
+/* BOTÕES */
+button {
+    padding: 10px;
+    border: none;
+    background: #27ae60;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+button:hover {
+    transform: scale(1.05);
+    background: #219150;
+}
+
+/* MESAS */
+.mesa {
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 5px;
+    background: rgba(255,255,255,0.2);
+    color: #fff;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.mesa:hover {
+    transform: scale(1.03);
+}
+
+.mesa.ativa {
+    background: #27ae60;
+}
+
+/* ITENS */
+.item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+/* TOTAL */
+.total {
+    font-weight: bold;
+    margin-top: 10px;
+    font-size: 18px;
+}
+
+/* INPUT */
+input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+
+    border-radius: 8px;
+    border: none;
+
+    background: rgba(255,255,255,0.9);
+}
+
+/* MODAL */
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+
+    display: none;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 999;
+}
+
+.modal-box {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    text-align: center;
+}
+
+/* LOGIN (FUNDO TOTALMENTE ISOLADO) */
+#loginTela {
+    position: fixed;
+    inset: 0;
+
+    /* FORÇA UM FUNDO REAL, NÃO TRANSPARENTE */
+    background: url("esp.png") no-repeat center center;
+    background-size: cover;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 99999;
+}
+
+/* OVERLAY ESCURO (SEM TRANSPARÊNCIA DO SISTEMA) */
+#loginTela::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background: rgba(0,0,0,0.75); /* mais forte */
+    
+    z-index: 1;
+}
+
+/* CAIXA LOGIN */
+.login-box {
+    position: relative;
+    z-index: 2;
+
+    background: #1e1e1e; /* 🔥 AGORA SÓLIDO (sem transparência) */
+    color: white;
+
+    padding: 30px;
+    border-radius: 16px;
+    width: 280px;
+
+    text-align: center;
+
+    box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+}
+
+.login-box h2 {
+    color: white;
+    margin-bottom: 15px;
+}
+
+.login-box input {
+    background: rgba(255,255,255,0.2);
+    color: white;
+}
+
+.login-box input::placeholder {
+    color: rgba(255,255,255,0.7);
+}
+
+.login-box button {
+    width: 100%;
+    background: linear-gradient(135deg, #27ae60, #2ecc71);
+}
+
+/* RESPONSIVO */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div id="loginTela">
+
+<div class="login-box">
+<h2>Login</h2>
+<input id="loginUser" placeholder="Usuário">
+<input id="loginPass" type="password" placeholder="Senha">
+<button onclick="fazerLogin()">Entrar</button>
+</div>
+
+</div>
+
+<!-- NAVBAR -->
+<div class="navbar">
+    <button onclick="trocarTela('caixa')" id="btnCaixa">💰 Caixa</button>
+    <button onclick="trocarTela('pdv')" id="btnPDV" class="ativo">🍽️ Mesas</button>
+    <button onclick="trocarTela('cadastro')" id="btnCadastro">📦 Cadastrar Produtos</button>
+    <button onclick="trocarTela('relatorio')" id="btnRelatorio">📊 Relatório</button>
+</div>
+
+<div id="caixa" class="tela">
+    <h2>Abertura de Caixa</h2>
+    <input type="number" id="valorAbertura" placeholder="Valor inicial">
+    <button onclick="abrirCaixa()">Abrir Caixa</button>
+
+    <h2>Fechamento de Caixa</h2>
+    <input type="number" id="fechDinheiro" placeholder="Dinheiro">
+    <input type="number" id="fechCredito" placeholder="Crédito">
+    <input type="number" id="fechDebito" placeholder="Débito">
+    <input type="number" id="fechPix" placeholder="PIX">
+    <button onclick="fecharCaixa()">Fechar Caixa</button>
+</div>
+
+<div id="modal" class="modal">
+    <div class="modal-box">
+        <p id="modalTexto"></p>
+        <button onclick="fecharModal()">OK</button>
+    </div>
+</div>
+
+<div id="modalCliente" class="modal">
+    <div class="modal-box">
+        <h3>Nome do cliente</h3>
+        <input id="nomeClienteMesa" placeholder="Opcional...">
+        <button onclick="confirmarMesa()">Abrir Mesa</button>
+    </div>
+</div>
+
+<div id="modalPagamento" class="modal">
+    <div class="modal-box">
+        <h3>Forma de pagamento</h3>
+
+        <button onclick="selecionarPagamento('dinheiro')">💵 Dinheiro</button>
+        <button onclick="selecionarPagamento('pix')">📱 PIX</button>
+        <button onclick="selecionarPagamento('credito')">💳 Crédito</button>
+        <button onclick="selecionarPagamento('debito')">💳 Débito</button>
+    </div>
+</div>
+
+<div id="modalComanda" class="modal">
+    <div class="modal-box">
+        <h3>🧾 Comanda</h3>
+        <pre id="textoComanda" style="text-align:left;"></pre>
+        <button onclick="fecharModalComanda()">OK</button>
+        <button onclick="imprimirComanda()">🖨️ Imprimir</button>
+    </div>
+</div>
+
+<!-- PDV -->
+<div id="pdv" class="tela ativa">
+<div class="container">
+
+<div class="card">
+<h3>Mesas</h3>
+<input id="buscaMesa" placeholder="🔍 Buscar cliente..." oninput="renderMesas()">
+<button onclick="abrirMesa()">➕ Nova Mesa</button>
+<div id="listaMesas"></div>
+</div>
+
+<div class="card">
+<h3>Produtos</h3>
+<div id="listaProdutos"></div>
+</div>
+
+<div class="card">
+<h3>Comanda</h3>
+<div id="itens"></div>
+<div class="total" id="total">Total: R$ 0,00</div>
+<button onclick="aplicarDesconto()">💰 Aplicar Desconto</button>
+<button onclick="fecharConta()">💰 Fechar Conta</button>
+</div>
+
+</div>
+</div>
+
+<!-- CADASTRO -->
+<div id="cadastro" class="tela">
+<h2>Cadastrar Produto</h2>
+<input id="nomeProduto" placeholder="Nome">
+<input id="precoProduto" type="number" placeholder="Preço">
+<input type="file" id="imgProduto">
+<button onclick="cadastrarProduto()">Salvar</button>
+</div>
+
+<!-- RELATÓRIO -->
+<div id="relatorio" class="tela">
+<h2>Relatório de Vendas</h2>
+<h3 id="totalVendas">Total vendido: R$ 0,00</h3>
+<div id="listaVendas"></div>
+    <h2>Relatório</h2>
+    <div id="relatorioConteudo"></div>
+</div>
+
+
+<script>
+let mesas = [];
+let mesaAtual = null;
+let vendas = [];
+
+let caixaAberto = false;
+let historicoCaixa = [];
+
+let produtos = [];
+
+const API_URL = "https://script.google.com/macros/s/AKfycbxDmOLHVQMTo_9TlNW2oF0i_n0O0xzoy6E6k7VqMaYPqsaV2pJBTp5JRG4jXqBOMeg/exec";
+
+async function carregarProdutos() {
+    try {
+        const res = await fetch(API_URL);
+        const data = await res.json();
+
+        produtos = data.map(p => ({
+            nome: p.Nome,
+            preco: Number(p.Preço),
+            img: p.Imagem || ""
+        }));
+
+        renderProdutos();
+
+    } catch (erro) {
+        console.error("Erro ao carregar produtos:", erro);
+    }
+}
+
+// TROCAR TELA
+function trocarTela(tela) {
+
+    if (usuarioLogado?.tipo === "operador" && (tela === "cadastro" || tela === "relatorio")) {
+    alert("Acesso restrito ao administrador!");
+    return;
+}
+
+    document.querySelectorAll(".tela").forEach(t => t.classList.remove("ativa"));
+    document.getElementById(tela).classList.add("ativa");
+
+    document.querySelectorAll(".navbar button").forEach(b => b.classList.remove("ativo"));
+
+    if (tela === "pdv") btnPDV.classList.add("ativo");
+    if (tela === "cadastro") btnCadastro.classList.add("ativo");
+    if (tela === "relatorio") {
+    document.getElementById("btnRelatorio").classList.add("ativo");
+    renderRelatorio();
+    }
+}
+
+// CADASTRO
+async function cadastrarProduto() {
+    const nome = document.getElementById("nomeProduto").value;
+    const preco = parseFloat(document.getElementById("precoProduto").value);
+
+    if (!nome || isNaN(preco)) {
+        alert("Preencha corretamente!");
+        return;
+    }
+
+    const novo = {
+        id: Date.now(),
+        nome,
+        preco,
+        img: ""
+    };
+
+    try {
+        await fetch(API_URL, {
+            method: "POST",
+            mode: "no-cors", // 🔥 ESSENCIAL
+            body: JSON.stringify(novo)
+        });
+
+        alert("Produto enviado! Veja na planilha.");
+
+        carregarProdutos();
+
+    } catch (erro) {
+        alert("Erro real: " + erro);
+    }
+}
+
+function fecharModalComanda() {
+    document.getElementById("modalComanda").style.display = "none";
+}
+
+function formatarPreco(valor) {
+    return Number(valor).toLocaleString("pt-BR", {
+        minimumFractionDigits: 2
+    });
+}
+
+function confirmarMesa() {
+    const nomeCliente = document.getElementById("nomeClienteMesa").value.trim();
+
+    const id = mesas.length > 0 ? Math.max(...mesas.map(m => m.id)) + 1 : 1;
+
+    mesas.push({
+    id,
+    cliente: nomeCliente || null,
+    itens: [],
+    desconto: 0
+    });
+    salvarDados(); // 👈 FALTAVA ISSO
+
+    document.getElementById("modalCliente").style.display = "none";
+    document.getElementById("nomeClienteMesa").value = "";
+
+    renderMesas();
+}
+
+// PRODUTOS
+function renderProdutos() {
+    const div = document.getElementById("listaProdutos");
+    div.innerHTML = "";
+
+    produtos.forEach(p => {
+        const btn = document.createElement("button");
+
+        btn.innerHTML = `
+            ${p.img ? `<img src="${p.img}" class="produto-img">` : ""}
+            ${p.nome} - R$ ${formatarPreco(p.preco)}
+        `;
+
+        btn.onclick = () => adicionarProduto(p);
+        div.appendChild(btn);
+    });
+}
+
+// MESAS
+function abrirMesa() {
+    if (!caixaAberto) {
+        mostrarModal("Abra o caixa primeiro!");
+        return;
+    }
+
+    document.getElementById("modalCliente").style.display = "flex";
+    salvarDados();
+}
+
+function mostrarModal(texto) {
+    document.getElementById("modalTexto").innerText = texto;
+    document.getElementById("modal").style.display = "flex";
+}
+
+function fecharModal() {
+    document.getElementById("modal").style.display = "none";
+}
+
+function fecharConta() {
+    if (!mesaAtual) return;
+
+    document.getElementById("modalPagamento").style.display = "flex";
+    
+}
+
+function formatarPreco(valor) {
+    return (parseFloat(valor) || 0).toFixed(2);
+}
+
+function renderMesas() {
+    const listaMesas = document.getElementById("listaMesas");
+    const busca = document.getElementById("buscaMesa").value.toLowerCase();
+
+    listaMesas.innerHTML = "";
+
+    mesas.forEach(m => {
+
+        const nome = m.cliente ? m.cliente.toLowerCase() : "";
+        const idMesa = "mesa " + m.id;
+
+        // FILTRO
+        if (!nome.includes(busca) && !idMesa.includes(busca)) return;
+
+        const el = document.createElement("div");
+        el.className = "mesa";
+
+        el.innerText = m.cliente 
+        ? `Mesa ${m.id} - ${m.cliente}` 
+        : `Mesa ${m.id}`;
+
+        el.onclick = () => selecionarMesa(m);
+
+        if (mesaAtual?.id === m.id) el.classList.add("ativa");
+
+        listaMesas.appendChild(el);
+    });
+}
+
+function selecionarMesa(m) {
+    mesaAtual = m;
+    renderMesas();
+    renderComanda();
+}
+
+
+function aplicarDesconto() {
+    if (!mesaAtual) return;
+
+    const valor = prompt("Digite o valor do desconto:");
+
+    const desconto = parseFloat(valor);
+
+    if (isNaN(desconto) || desconto < 0) {
+    alert("Desconto inválido!");
+    return;
+    }
+
+    mesaAtual.desconto = desconto;
+
+    salvarDados();
+    renderComanda();
+}
+
+// COMANDA
+function adicionarProduto(p) {
+    if (!mesaAtual) return alert("Selecione uma mesa!");
+
+    // procura se já existe
+    const existente = mesaAtual.itens.find(i => i.nome === p.nome);
+
+    if (existente) {
+        existente.qtd += 1;
+    } else {
+        mesaAtual.itens.push({
+            nome: p.nome,
+            preco: p.preco,
+            qtd: 1
+        });
+    }
+
+    salvarDados();
+    renderComanda();
+}
+
+function abrirCaixa() {
+    const valor = parseFloat(document.getElementById("valorAbertura").value);
+
+    if (isNaN(valor)) return alert("Informe valor!");
+
+    caixaAberto = true;
+
+    historicoCaixa.push({
+        tipo: "Abertura",
+        valor,
+        data: new Date().toLocaleString()
+    });
+    
+    alert("Caixa aberto!");
+    salvarDados();
+}
+
+
+function fecharCaixa() {
+    historicoCaixa.push({
+        tipo: "Fechamento",
+        dinheiro: parseFloat(fechDinheiro.value) || 0,
+        credito: parseFloat(fechCredito.value) || 0,
+        debito: parseFloat(fechDebito.value) || 0,
+        pix: parseFloat(fechPix.value) || 0,
+        data: new Date().toLocaleString()
+    });
+
+    caixaAberto = false;
+    alert("Caixa fechado!");
+    salvarDados();
+}
+
+
+function selecionarPagamento(forma) {
+
+    document.getElementById("modalPagamento").style.display = "none";
+
+    let total = 0;
+
+    mesaAtual.itens.forEach(i => {
+    total += (i.preco * i.qtd);
+    });
+
+    const desconto = mesaAtual.desconto || 0;
+    total = Math.max(0, total - desconto);
+
+    vendas.push({
+    mesa: mesaAtual.id,
+    total,
+    desconto: mesaAtual.desconto || 0,
+    forma,
+    data: new Date().toLocaleString()
+    });
+
+    salvarDados();
+
+    const nome = mesaAtual.cliente ? `Cliente: ${mesaAtual.cliente}\n` : "";
+
+    let lista = "";
+
+    mesaAtual.itens.forEach(i => {
+    lista += `${i.qtd}x ${i.nome} - R$ ${formatarPreco(i.preco * i.qtd)}\n`;
+});
+
+
+const texto = 
+`🧾 COMANDA
+
+Mesa: ${mesaAtual.id}
+${nome}
+-------------------
+${lista}
+-------------------
+Forma: ${forma}
+${desconto > 0 ? `Desconto: R$ ${formatarPreco(desconto)}\n` : ""}
+Total: R$ ${formatarPreco(total)}
+
+Obrigado!`;
+
+document.getElementById("textoComanda").innerText = texto;
+document.getElementById("modalComanda").style.display = "flex";
+    mesas = mesas.filter(m => m.id !== mesaAtual.id);
+    mesaAtual = null;
+
+    document.getElementById("itens").innerHTML = "";
+    document.getElementById("total").innerText = "Total: R$ 0,00";
+
+    renderMesas();
+}
+
+function imprimirComanda() {
+    const conteudo = document.getElementById("textoComanda").innerText;
+
+    const win = window.open("", "", "width=300,height=600");
+
+    win.document.write(`
+        <pre style="font-family: monospace;">
+${conteudo}
+        </pre>
+    `);
+
+    win.document.close();
+    win.print();
+}
+
+function renderComanda() {
+    if (!mesaAtual) return;
+
+    const divItens = document.getElementById("itens");
+    const totalDiv = document.getElementById("total");
+
+    divItens.innerHTML = "";
+    let soma = 0;
+
+    mesaAtual.itens.forEach((i, index) => {
+        const subtotal = (i.preco * i.qtd);
+        soma += subtotal;
+
+        const el = document.createElement("div");
+        el.className = "item";
+
+        el.innerHTML = `
+            <span>${i.qtd}x ${i.nome}</span>
+
+            <span>
+                R$ ${formatarPreco(subtotal)}
+
+                <button onclick="alterarQtd(${index}, 1)">➕</button>
+                <button onclick="alterarQtd(${index}, -1)">➖</button>
+                <button onclick="removerItem(${index})">❌</button>
+            </span>
+        `;
+
+        divItens.appendChild(el);
+    });
+
+    // desconto
+    const desconto = mesaAtual.desconto || 0;
+
+    if (desconto < 0) {
+    alert("Desconto não pode ser negativo");
+    mesaAtual.desconto = 0;
+    }
+
+    const totalFinal = Math.max(0, soma - (desconto || 0));
+
+    if (desconto > 0) {
+    const elDesc = document.createElement("div");
+    elDesc.style.color = "red";
+    elDesc.style.fontWeight = "bold";
+    elDesc.innerHTML = `💸 Desconto: - R$ ${formatarPreco(desconto)}`;
+    divItens.appendChild(elDesc);
+    }
+
+    totalDiv.innerText = `Total: R$ ${formatarPreco(totalFinal)}`;
+    
+}
+
+
+function alterarQtd(index, valor) {
+    const item = mesaAtual.itens[index];
+
+    item.qtd += valor;
+
+    if (item.qtd <= 0) {
+        mesaAtual.itens.splice(index, 1);
+    }
+
+    salvarDados();
+    renderComanda();
+}
+
+function removerItem(index) {
+    mesaAtual.itens.splice(index, 1);
+    salvarDados();
+    renderComanda();
+}
+
+// USUÁRIOS
+const usuarios = [
+    { user: "admin", pass: "123", tipo: "admin" },
+    { user: "operador", pass: "123", tipo: "operador" }
+];
+
+let usuarioLogado = null;
+
+// LOGIN
+function fazerLogin() {
+    const u = document.getElementById("loginUser").value;
+    const p = document.getElementById("loginPass").value;
+
+    const user = usuarios.find(x => x.user === u && x.pass === p);
+
+    if (!user) {
+        alert("Login inválido");
+        return;
+    }
+
+    usuarioLogado = user;
+
+    document.getElementById("loginTela").style.display = "none";
+
+    aplicarPermissoes();
+}
+
+// PERMISSÕES
+function aplicarPermissoes() {
+
+    if (usuarioLogado.tipo === "operador") {
+        document.getElementById("btnCadastro").style.display = "none";
+        document.getElementById("btnRelatorio").style.display = "none";
+    }
+
+    if (usuarioLogado.tipo === "admin") {
+        document.getElementById("btnCadastro").style.display = "inline-block";
+        document.getElementById("btnRelatorio").style.display = "inline-block";
+    }
+}
+
+
+// RELATÓRIO
+function renderRelatorio() {
+    const div = document.getElementById("relatorioConteudo");
+    div.innerHTML = "";
+
+    // VENDAS
+    vendas.forEach(v => {
+        div.innerHTML += `
+        <div class="card">
+        🧾 Mesa ${v.mesa} | ${v.forma} <br>
+        💰 Total: R$ ${formatarPreco(v.total)} <br>
+        💸 Desconto: R$ ${formatarPreco(v.desconto || 0)} <br>
+        🕒 ${v.data}
+        </div>`;
+    });
+
+    // CAIXA
+    historicoCaixa.forEach(c => {
+
+        if (c.tipo === "Abertura") {
+            div.innerHTML += `
+            <div class="card">
+            🟢 Abertura de Caixa <br>
+            💰 Inicial: R$ ${c.valor.toFixed(2)} <br>
+            🕒 ${c.data}
+            </div>`;
+        }
+
+        if (c.tipo === "Fechamento") {
+            div.innerHTML += `
+            <div class="card">
+            🔴 Fechamento de Caixa <br>
+            💵 Dinheiro: R$ ${Number(c.dinheiro || 0).toFixed(2)} <br>
+            💳 Crédito: R$ ${Number(c.credito || 0).toFixed(2)} <br>
+            💳 Débito: R$ ${Number(c.debito || 0).toFixed(2)} <br>
+            📱 PIX: R$ ${Number(c.pix || 0).toFixed(2)} <br>
+            🕒 ${c.data}
+            </div>`;
+        }
+
+    });
+}
+
+function salvarDados() {
+    localStorage.setItem("pdv", JSON.stringify({
+        mesas,
+        vendas,
+        produtos,
+        caixaAberto,
+        historicoCaixa
+    }));
+}
+
+window.onload = function() {
+    const dados = localStorage.getItem("pdv");
+
+    if (dados) {
+        const obj = JSON.parse(dados);
+
+        mesas = obj.mesas || [];
+        vendas = obj.vendas || [];
+        //produtos = obj.produtos || produtos;
+        caixaAberto = obj.caixaAberto || false;
+        historicoCaixa = obj.historicoCaixa || [];
+    }
+    carregarProdutos();
+    renderMesas();
+};
+</script>
+
+</body>
+</html>
