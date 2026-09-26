@@ -1,0 +1,7409 @@
+
+<!DOCTYPE html>
+
+<html lang="pt-br">
+
+
+
+<head>
+
+
+
+<meta charset="UTF-8">
+
+
+
+<meta
+
+    name="viewport"
+
+    content="width=device-width, initial-scale=1.0"
+
+>
+
+
+
+<title>PDV Profissional</title>
+
+
+
+<style>
+
+
+
+* {
+
+    box-sizing: border-box;
+
+}
+
+
+
+body {
+
+
+
+    font-family:
+
+        "Segoe UI",
+
+        Arial,
+
+        sans-serif;
+
+
+
+    margin: 0;
+
+
+
+    background: #eef1f5;
+
+
+
+    color: #333;
+
+
+
+}
+
+
+
+
+
+/* ============================================================
+
+   LOGIN
+
+\============================================================ */
+
+
+
+#loginTela {
+
+
+
+    position: fixed;
+
+
+
+    inset: 0;
+
+
+
+    width: 100%;
+
+    height: 100%;
+
+
+
+    background:
+
+        linear-gradient(
+
+            135deg,
+
+            #2c3e50,
+
+            #1a252f
+
+        );
+
+
+
+    display: flex;
+
+
+
+    justify-content: center;
+
+
+
+    align-items: center;
+
+
+
+    z-index: 9999;
+
+
+
+}
+
+
+
+
+
+.login-box {
+
+
+
+    background: white;
+
+
+
+    padding: 30px;
+
+
+
+    border-radius: 14px;
+
+
+
+    width: min(350px, 90%);
+
+
+
+    box-shadow:
+
+        0 15px 40px rgba(0,0,0,.25);
+
+
+
+}
+
+
+
+
+
+.login-box h2 {
+
+
+
+    margin-top: 0;
+
+
+
+    text-align: center;
+
+
+
+}
+
+
+
+
+
+/* ============================================================
+
+   NAVBAR
+
+\============================================================ */
+
+
+
+.navbar {
+
+
+
+    display: flex;
+
+
+
+    background:
+
+        linear-gradient(
+
+            90deg,
+
+            #2c3e50,
+
+            #1a252f
+
+        );
+
+
+
+    padding: 10px;
+
+
+
+    gap: 10px;
+
+
+
+    box-shadow:
+
+        0 2px 10px rgba(0,0,0,.2);
+
+
+
+}
+
+
+
+
+
+.navbar button {
+
+
+
+    background: transparent;
+
+
+
+    border: none;
+
+
+
+    color: white;
+
+
+
+    padding: 10px 15px;
+
+
+
+    border-radius: 8px;
+
+
+
+    transition: .3s;
+
+
+
+}
+
+
+
+
+
+.navbar button:hover {
+
+
+
+    background:
+
+        rgba(255,255,255,.1);
+
+
+
+}
+
+
+
+
+
+.navbar .ativo {
+
+
+
+    background: #27ae60;
+
+
+
+}
+
+
+
+
+
+/* ============================================================
+
+   TELAS
+
+\============================================================ */
+
+
+
+.tela {
+
+
+
+    display: none;
+
+
+
+    padding: 20px;
+
+
+
+    animation:
+
+        fade .3s ease;
+
+
+
+}
+
+
+
+
+
+.tela.ativa {
+
+
+
+    display: block;
+
+
+
+}
+
+
+
+
+
+@keyframes fade {
+
+
+
+    from {
+
+
+
+        opacity: 0;
+
+
+
+        transform:
+
+            translateY(10px);
+
+
+
+    }
+
+
+
+    to {
+
+
+
+        opacity: 1;
+
+
+
+        transform:
+
+            translateY(0);
+
+
+
+    }
+
+
+
+}
+
+
+
+
+
+/* ============================================================
+
+   LAYOUT
+
+\============================================================ */
+
+
+
+.container {
+
+
+
+    display: flex;
+
+
+
+    gap: 20px;
+
+
+
+    align-items: flex-start;
+
+
+
+}
+
+
+
+
+
+.card {
+
+
+
+    background: white;
+
+
+
+    padding: 15px;
+
+
+
+    border-radius: 12px;
+
+
+
+    flex: 1;
+
+
+
+    box-shadow:
+
+        0 5px 15px
+
+        rgba(0,0,0,.08);
+
+
+
+}
+
+
+
+
+
+.card h3 {
+
+
+
+    margin-top: 0;
+
+
+
+}
+
+
+
+
+
+/* ============================================================
+
+   BOTÕES
+
+\============================================================ */
+
+
+
+button {
+
+
+
+    padding: 10px;
+
+
+
+    border: none;
+
+
+
+    background: #27ae60;
+
+
+
+    color: white;
+
+
+
+    border-radius: 8px;
+
+
+
+    cursor: pointer;
+
+
+
+    transition: .2s;
+
+
+
+}
+
+
+
+
+
+button:hover {
+
+
+
+    transform: scale(1.03);
+
+
+
+    background: #219150;
+
+
+
+}
+
+
+
+
+
+button:disabled {
+
+
+
+    opacity: .6;
+
+
+
+    cursor: not-allowed;
+
+
+
+    transform: none;
+
+
+
+}
+
+
+
+
+
+/* ============================================================
+
+   MESAS
+
+\============================================================ */
+
+
+
+.mesa {
+
+
+
+    padding: 12px;
+
+
+
+    border-radius: 8px;
+
+
+
+    margin-bottom: 6px;
+
+
+
+    background: #f1f1f1;
+
+
+
+    cursor: pointer;
+
+
+
+    transition: .2s;
+
+
+
+}
+
+
+
+
+
+.mesa:hover {
+
+
+
+    transform: scale(1.02);
+
+
+
+    background: #e6e6e6;
+
+
+
+}
+
+
+
+
+
+.mesa.ativa {
+
+
+
+    background: #27ae60;
+
+
+
+    color: white;
+
+
+
+}
+
+
+
+
+
+#buscaMesa {
+
+
+
+    margin-bottom: 10px;
+
+
+
+}
+
+/* ============================================================
+   PRODUTOS - CARDS
+============================================================ */
+
+#listaProdutos {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fill,
+            minmax(125px, 1fr)
+        );
+
+    gap: 10px;
+
+    margin-top: 10px;
+
+}
+
+
+/* ============================================================
+   CARD DO PRODUTO
+============================================================ */
+
+.produto-btn {
+
+    width: 100%;
+
+    min-height: 155px;
+
+    padding: 8px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: flex-start;
+
+    gap: 6px;
+
+    text-align: center;
+
+    background: #ffffff;
+
+    color: #333;
+
+    border: 1px solid #e2e2e2;
+
+    border-radius: 10px;
+
+    box-shadow:
+        0 2px 6px rgba(0,0,0,.08);
+
+    overflow: hidden;
+
+    transition:
+        transform .15s ease,
+        box-shadow .15s ease,
+        border-color .15s ease;
+
+}
+
+
+/* ============================================================
+   HOVER DO CARD
+============================================================ */
+
+.produto-btn:hover {
+
+    transform: translateY(-2px);
+
+    background: #ffffff;
+
+    color: #333;
+
+    border-color: #27ae60;
+
+    box-shadow:
+        0 5px 12px rgba(0,0,0,.12);
+
+}
+
+
+/* ============================================================
+   IMAGEM DO PRODUTO
+============================================================ */
+
+.produto-img {
+
+    width: 100%;
+
+    height: 100px;
+
+    object-fit: cover;
+
+    border-radius: 7px;
+
+    display: block;
+
+    background: #f1f1f1;
+
+}
+
+
+/* ============================================================
+   INFORMAÇÕES DO PRODUTO
+============================================================ */
+
+.produto-btn span {
+
+    width: 100%;
+
+    display: block;
+
+    overflow: hidden;
+
+}
+
+
+/* Nome */
+
+.produto-btn span {
+
+    font-size: 13px;
+
+    line-height: 1.2;
+
+}
+
+
+/* Preço */
+
+.produto-btn small {
+
+    display: block;
+
+    margin-top: 4px;
+
+    font-size: 14px;
+
+    font-weight: bold;
+
+    color: #27ae60;
+
+}
+
+
+
+/* ============================================================
+
+   ITENS
+
+\============================================================ */
+
+
+
+.item {
+
+
+
+    display: flex;
+
+
+
+    justify-content: space-between;
+
+
+
+    align-items: center;
+
+
+
+    gap: 10px;
+
+
+
+    margin-bottom: 8px;
+
+
+
+    padding: 8px;
+
+
+
+    border-bottom:
+
+        1px solid #eee;
+
+
+
+}
+
+
+
+
+
+.item-info {
+
+
+
+    flex: 1;
+
+
+
+}
+
+
+
+
+
+.item-acoes {
+
+
+
+    display: flex;
+
+
+
+    align-items: center;
+
+
+
+    gap: 3px;
+
+
+
+}
+
+
+
+
+
+.item-acoes button {
+
+
+
+    padding: 5px 8px;
+
+
+
+    font-size: 13px;
+
+
+
+}
+
+
+
+
+
+.total {
+
+
+
+    font-weight: bold;
+
+
+
+    margin-top: 15px;
+
+
+
+    font-size: 20px;
+
+
+
+}
+
+
+
+
+
+/* ============================================================
+
+   INPUTS
+
+\============================================================ */
+
+
+
+input {
+
+
+
+    width: 100%;
+
+
+
+    padding: 10px;
+
+
+
+    margin-bottom: 10px;
+
+
+
+    border-radius: 8px;
+
+
+
+    border:
+
+        1px solid #ccc;
+
+
+
+    font-size: 14px;
+
+
+
+}
+
+
+
+
+
+input:focus {
+
+
+
+    outline: none;
+
+
+
+    border-color: #27ae60;
+
+
+
+}
+
+
+
+
+
+/* ============================================================
+
+   RELATÓRIO
+
+\============================================================ */
+
+
+
+.venda {
+
+
+
+    background: #fff;
+
+
+
+    padding: 10px;
+
+
+
+    border-radius: 8px;
+
+
+
+    margin-bottom: 10px;
+
+
+
+    box-shadow:
+
+        0 2px 8px
+
+        rgba(0,0,0,.05);
+
+
+
+}
+
+
+
+
+
+/* ============================================================
+
+   MODAIS
+
+\============================================================ */
+
+
+
+.modal {
+
+
+
+    position: fixed;
+
+
+
+    inset: 0;
+
+
+
+    width: 100%;
+
+    height: 100%;
+
+
+
+    background:
+
+        rgba(0,0,0,.5);
+
+
+
+    display: none;
+
+
+
+    justify-content: center;
+
+
+
+    align-items: center;
+
+
+
+    z-index: 999;
+
+
+
+    padding: 20px;
+
+
+
+}
+
+
+
+
+
+.modal-box {
+
+
+
+    background: white;
+
+
+
+    padding: 25px;
+
+
+
+    border-radius: 12px;
+
+
+
+    text-align: center;
+
+
+
+    width: min(400px, 100%);
+
+
+
+    max-height: 90vh;
+
+
+
+    overflow-y: auto;
+
+
+
+    animation:
+
+        aparecer .3s ease;
+
+
+
+}
+
+
+
+
+
+.modal-box button {
+
+
+
+    margin: 4px;
+
+
+
+}
+
+
+
+
+
+@keyframes aparecer {
+
+
+
+    from {
+
+
+
+        transform: scale(.8);
+
+
+
+        opacity: 0;
+
+
+
+    }
+
+
+
+    to {
+
+
+
+        transform: scale(1);
+
+
+
+        opacity: 1;
+
+
+
+    }
+
+
+
+}
+
+
+
+
+
+/* ============================================================
+
+   COMANDA
+
+\============================================================ */
+
+
+
+#textoComanda {
+
+
+
+    text-align: left;
+
+
+
+    background: #f5f5f5;
+
+
+
+    padding: 15px;
+
+
+
+    border-radius: 8px;
+
+
+
+    white-space: pre-wrap;
+
+
+
+    font-family: monospace;
+
+
+
+    overflow-x: auto;
+
+
+
+}
+
+
+
+
+
+/* ============================================================
+
+   RESPONSIVO
+
+\============================================================ */
+
+
+
+@media (max-width: 900px) {
+
+
+
+    .container {
+
+
+
+        flex-direction: column;
+
+
+
+    }
+
+
+
+    .card {
+
+
+
+        width: 100%;
+
+
+
+    }
+
+
+
+}
+
+@media (max-width: 600px) {
+
+    .navbar {
+
+        overflow-x: auto;
+
+    }
+
+    .navbar button {
+
+        white-space: nowrap;
+
+    }
+
+    .tela {
+
+        padding: 10px;
+
+    }
+
+    #listaProdutos {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+        gap: 8px;
+
+    }
+
+    .produto-btn {
+
+        min-height: 145px;
+
+        padding: 7px;
+
+    }
+
+    .produto-img {
+
+        height: 90px;
+
+    }
+
+}
+</style>
+
+
+
+</head>
+
+
+
+
+
+<body>
+
+
+
+
+
+<!-- ============================================================
+
+     LOGIN
+
+\============================================================ -->
+
+
+
+<div id="loginTela">
+
+
+
+    <div class="login-box">
+
+
+
+        <h2>🔐 Login</h2>
+
+
+
+        <input
+
+            id="loginUser"
+
+            placeholder="Usuário"
+
+            autocomplete="username"
+
+        >
+
+
+
+        <input
+
+            id="loginPass"
+
+            type="password"
+
+            placeholder="Senha"
+
+            autocomplete="current-password"
+
+        >
+
+
+
+<button
+    type="button"
+    style="width:100%;"
+    onclick="fazerLogin()"
+>
+    Entrar
+</button>
+
+    </div>
+
+
+
+</div>
+
+
+
+
+
+<!-- ============================================================
+
+     NAVBAR
+
+\============================================================ -->
+
+
+
+<div class="navbar">
+
+
+
+    <button
+
+        onclick="trocarTela('caixa')"
+
+        id="btnCaixa"
+
+    >
+
+        💰 Caixa
+
+    </button>
+
+
+
+    <button
+
+        onclick="trocarTela('pdv')"
+
+        id="btnPDV"
+
+        class="ativo"
+
+    >
+
+        🍽️ Mesas
+
+    </button>
+
+
+
+    <button
+
+        onclick="trocarTela('cadastro')"
+
+        id="btnCadastro"
+
+    >
+
+        📦 Cadastrar Produtos
+
+    </button>
+
+
+
+    <button
+
+        onclick="trocarTela('relatorio')"
+
+        id="btnRelatorio"
+
+    >
+
+        📊 Relatório
+
+    </button>
+
+
+
+</div>
+
+
+
+
+
+<!-- ============================================================
+
+     MODAL MENSAGEM
+
+\============================================================ -->
+
+
+
+<div
+
+    id="modal"
+
+    class="modal"
+
+>
+
+
+
+    <div class="modal-box">
+
+
+
+        <p id="modalTexto"></p>
+
+
+
+        <button onclick="fecharModal()">
+
+            OK
+
+        </button>
+
+
+
+    </div>
+
+
+
+</div>
+
+
+
+
+
+<!-- ============================================================
+
+     MODAL CLIENTE
+
+\============================================================ -->
+
+
+
+<div
+
+    id="modalCliente"
+
+    class="modal"
+
+>
+
+
+
+    <div class="modal-box">
+
+
+
+        <h3>Nome do cliente</h3>
+
+
+
+        <input
+
+            id="nomeClienteMesa"
+
+            placeholder="Opcional..."
+
+        >
+
+
+
+        <button
+
+            onclick="confirmarMesa()"
+
+        >
+
+            Abrir Mesa
+
+        </button>
+
+
+
+        <button
+
+            onclick="fecharModalCliente()"
+
+            style="background:#777;"
+
+        >
+
+            Cancelar
+
+        </button>
+
+
+
+    </div>
+
+
+
+</div>
+
+
+
+
+
+<!-- ============================================================
+
+     MODAL PAGAMENTO
+
+\============================================================ -->
+
+
+
+<div
+
+    id="modalPagamento"
+
+    class="modal"
+
+>
+
+
+
+    <div class="modal-box">
+
+
+
+        <h3>Forma de pagamento</h3>
+
+
+
+        <button
+
+            onclick="selecionarPagamento('dinheiro')"
+
+        >
+
+            💵 Dinheiro
+
+        </button>
+
+
+
+        <button
+
+            onclick="selecionarPagamento('pix')"
+
+        >
+
+            📱 PIX
+
+        </button>
+
+
+
+        <button
+
+            onclick="selecionarPagamento('credito')"
+
+        >
+
+            💳 Crédito
+
+        </button>
+
+
+
+        <button
+
+            onclick="selecionarPagamento('debito')"
+
+        >
+
+            💳 Débito
+
+        </button>
+
+
+
+        <br>
+
+
+
+        <button
+
+            onclick="fecharModalPagamento()"
+
+            style="background:#777;"
+
+        >
+
+            Cancelar
+
+        </button>
+
+
+
+    </div>
+
+
+
+</div>
+
+
+
+
+
+<!-- ============================================================
+
+     MODAL CONFIRMAÇÃO
+
+\============================================================ -->
+
+
+
+<div
+
+    id="modalConfirmacao"
+
+    class="modal"
+
+>
+
+
+
+    <div class="modal-box">
+
+
+
+        <p id="textoConfirmacao"></p>
+
+
+
+        <div style="margin-top:15px;">
+
+
+
+            <button
+
+                onclick="confirmarAcao()"
+
+                style="background:#27ae60;"
+
+            >
+
+                ✅ Sim
+
+            </button>
+
+
+
+            <button
+
+                onclick="fecharConfirmacao()"
+
+                style="background:#e74c3c;"
+
+            >
+
+                ❌ Não
+
+            </button>
+
+
+
+        </div>
+
+
+
+    </div>
+
+
+
+</div>
+
+
+
+
+
+<!-- ============================================================
+
+     MODAL COMANDA
+
+\============================================================ -->
+
+
+
+<div
+
+    id="modalComanda"
+
+    class="modal"
+
+>
+
+
+
+    <div class="modal-box">
+
+
+
+        <h3>🧾 Comanda</h3>
+
+
+
+        <pre id="textoComanda"></pre>
+
+
+
+        <button
+
+            onclick="fecharModalComanda()"
+
+        >
+
+            Fechar
+
+        </button>
+
+
+
+        <button
+
+            onclick="imprimirComanda()"
+
+        >
+
+            🖨️ Imprimir
+
+        </button>
+
+
+
+    </div>
+
+
+
+</div>
+
+
+
+
+
+<!-- ============================================================
+
+     CAIXA
+
+\============================================================ -->
+
+
+
+<div
+
+    id="caixa"
+
+    class="tela"
+
+>
+
+
+
+    <div class="card">
+
+
+
+        <h2>💰 Abertura de Caixa</h2>
+
+
+
+        <input
+
+            type="number"
+
+            id="valorAbertura"
+
+            placeholder="Valor inicial"
+
+            step="0.01"
+
+        >
+
+
+
+        <button
+
+            id="btnAbrirCaixa"
+
+            onclick="abrirCaixa()"
+
+        >
+
+            Abrir Caixa
+
+        </button>
+
+
+
+        <hr>
+
+
+
+        <h2>🔴 Fechamento de Caixa</h2>
+
+
+
+        <input
+
+            type="number"
+
+            id="fechDinheiro"
+
+            placeholder="Dinheiro"
+
+            step="0.01"
+
+        >
+
+
+
+        <input
+
+            type="number"
+
+            id="fechCredito"
+
+            placeholder="Crédito"
+
+            step="0.01"
+
+        >
+
+
+
+        <input
+
+            type="number"
+
+            id="fechDebito"
+
+            placeholder="Débito"
+
+            step="0.01"
+
+        >
+
+
+
+        <input
+
+            type="number"
+
+            id="fechPix"
+
+            placeholder="PIX"
+
+            step="0.01"
+
+        >
+
+
+
+        <button
+
+            onclick="fecharCaixa()"
+
+            style="background:#e74c3c;"
+
+        >
+
+            Fechar Caixa
+
+        </button>
+
+
+
+        <h3 id="statusCaixa">
+
+            Carregando status...
+
+        </h3>
+
+
+
+    </div>
+
+
+
+</div>
+
+
+
+
+
+<!-- ============================================================
+
+     PDV
+
+\============================================================ -->
+
+
+
+<div
+
+    id="pdv"
+
+    class="tela ativa"
+
+>
+
+
+
+    <div class="container">
+
+
+
+
+
+        <!-- MESAS -->
+
+
+
+        <div class="card">
+
+
+
+            <h3>🍽️ Mesas</h3>
+
+
+
+            <input
+
+                id="buscaMesa"
+
+                placeholder="🔍 Buscar cliente ou mesa..."
+
+                oninput="renderMesas()"
+
+            >
+
+
+
+            <button
+
+                onclick="abrirMesa()"
+
+            >
+
+                ➕ Nova Mesa
+
+            </button>
+
+
+
+            <div
+
+                id="listaMesas"
+
+                style="margin-top:10px;"
+
+            ></div>
+
+
+
+        </div>
+
+
+
+
+
+        <!-- PRODUTOS -->
+
+
+
+        <div class="card">
+
+
+
+            <h3>📦 Produtos</h3>
+
+
+
+            <div id="listaProdutos"></div>
+
+
+
+        </div>
+
+
+
+
+
+        <!-- COMANDA -->
+
+
+
+        <div class="card">
+
+
+
+            <h3>🧾 Comanda</h3>
+
+
+
+            <div id="itens"></div>
+
+
+
+            <div
+
+                class="total"
+
+                id="total"
+
+            >
+
+                Total: R$ 0,00
+
+            </div>
+
+
+
+            <button
+
+                onclick="aplicarDesconto()"
+
+                style="margin-top:10px;"
+
+            >
+
+                💰 Aplicar Desconto
+
+            </button>
+
+
+
+            <button
+
+                onclick="fecharConta()"
+
+                style="margin-top:10px;"
+
+            >
+
+                💳 Fechar Conta
+
+            </button>
+
+
+
+        </div>
+
+
+
+    </div>
+
+
+
+</div>
+
+
+
+
+
+<!-- ============================================================
+
+     CADASTRO
+
+\============================================================ -->
+
+
+
+<div
+
+    id="cadastro"
+
+    class="tela"
+
+>
+
+
+
+    <div class="card">
+
+
+
+        <h2>📦 Cadastrar Produto</h2>
+
+
+
+        <input
+
+            id="nomeProduto"
+
+            placeholder="Nome"
+
+        >
+
+
+
+        <input
+
+            id="precoProduto"
+
+            type="number"
+
+            placeholder="Preço"
+
+            step="0.01"
+
+        >
+
+
+
+        <input
+
+            type="file"
+
+            id="imgProduto"
+
+            accept="image/*"
+
+        >
+
+
+
+        <button
+
+            onclick="cadastrarProduto()"
+
+        >
+
+            Salvar Produto
+
+        </button>
+
+
+
+    </div>
+
+
+
+</div>
+
+
+
+
+
+<!-- ============================================================
+
+     RELATÓRIO
+
+\============================================================ -->
+
+
+
+<div
+
+    id="relatorio"
+
+    class="tela"
+
+>
+
+
+
+    <div class="card">
+
+
+
+        <h2>📊 Relatório de Vendas</h2>
+
+
+
+        <h3 id="totalVendas">
+
+            Total vendido: R$ 0,00
+
+        </h3>
+
+
+
+        <div id="relatorioConteudo"></div>
+
+
+
+        <button
+
+            onclick="limparRelatorio()"
+
+            style="background:#e74c3c;"
+
+        >
+
+            🗑️ Limpar Relatório
+
+        </button>
+
+
+
+    </div>
+
+
+
+</div>
+
+
+
+
+
+<script>
+
+
+
+
+
+/* ============================================================
+
+   CONFIGURAÇÃO
+
+\============================================================ */
+
+
+
+const API =
+
+"https://script.google.com/macros/s/AKfycbyEDSkSt0Ki20WfYSI0DwJTP6e5wLGTYQyojAb8aIrIQaLb9JLkIKeLg0MvXjvHZsEgZg/exec";
+
+
+
+
+
+/* ============================================================
+
+   ESTADO
+
+\============================================================ */
+
+
+
+let mesas = [];
+
+
+
+let mesaAtual = null;
+
+
+
+let produtos = [];
+
+
+
+let vendas = [];
+
+
+
+let historicoCaixa = [];
+
+
+
+let caixaAberto = false;
+
+
+
+let usuarioLogado = null;
+
+
+
+let acaoConfirmacao = null;
+
+
+
+
+
+/* ============================================================
+
+   API
+
+\============================================================ */
+
+
+
+const api = {
+    async enviar(acao, dados = {}) {
+        try {
+            const resposta = await fetch(API, {
+                method: "POST",
+                body: JSON.stringify({ acao, ...dados })
+            });
+            const texto = await resposta.text();
+            console.log("Resposta da API:", texto);
+            if (!resposta.ok) throw new Error("Erro HTTP " + resposta.status);
+            let resultado;
+            try { resultado = JSON.parse(texto); }
+            catch (e) { throw new Error("O servidor não retornou uma resposta válida. Verifique a implantação do Apps Script."); }
+            if (resultado && resultado.sucesso === false) throw new Error(resultado.erro || "Erro na operação.");
+            return resultado;
+        } catch (erro) {
+            console.error("Erro na comunicação com a API:", erro);
+            throw erro;
+        }
+    },
+    login(usuario, senha) { return this.enviar("login", { usuario, senha }); },
+    listarProdutos() { return this.enviar("listarProdutos"); },
+    cadastrarProduto(produto) { return this.enviar("cadastrarProduto", produto); },
+    listarMesas() { return this.enviar("listarMesas"); },
+    abrirMesa(cliente) { return this.enviar("abrirMesa", { cliente }); },
+    fecharMesa(id) { return this.enviar("fecharMesa", { id }); },
+    adicionarItemMesa(mesa, produto, quantidade, preco) { return this.enviar("adicionarItemMesa", { mesa, produto, quantidade, preco }); },
+    listarItensMesa(mesa) { return this.enviar("listarItensMesa", { mesa }); },
+    alterarQuantidadeItem(mesa, produto, quantidade) { return this.enviar("alterarQuantidadeItem", { mesa, produto, quantidade }); },
+    removerItemMesa(mesa, produto) { return this.enviar("removerItemMesa", { mesa, produto }); },
+    limparItensMesa(mesa) { return this.enviar("limparItensMesa", { mesa }); },
+    atualizarDescontoMesa(mesa, desconto) { return this.enviar("atualizarDescontoMesa", { mesa, desconto }); },
+    abrirCaixa(valor) { return this.enviar("abrirCaixa", { valor }); },
+    fecharCaixa(dinheiro, credito, debito, pix) { return this.enviar("fecharCaixa", { dinheiro, credito, debito, pix }); },
+    listarCaixa() { return this.enviar("listarCaixa"); },
+    registrarVenda(venda) { return this.enviar("registrarVenda", venda); },
+    listarVendas() { return this.enviar("listarVendas"); },
+    limparRelatorio() { return this.enviar("limparRelatorio"); }
+};
+
+
+/* ============================================================
+
+   FORMATAÇÃO
+
+\============================================================ */
+
+
+
+function formatarPreco(valor) {
+
+
+
+    return Number(valor || 0)
+
+        .toLocaleString(
+
+            "pt-BR",
+
+            {
+
+                minimumFractionDigits: 2,
+
+                maximumFractionDigits: 2
+
+            }
+
+        );
+
+
+
+}
+
+
+
+
+
+function formatarData(valor) {
+
+
+
+    if (!valor) {
+
+        return "";
+
+    }
+
+
+
+
+
+    const data = new Date(valor);
+
+
+
+
+
+    if (isNaN(data.getTime())) {
+
+        return String(valor);
+
+    }
+
+
+
+
+
+    return data.toLocaleString(
+
+        "pt-BR"
+
+    );
+
+
+
+}
+
+
+
+
+
+/* ============================================================
+
+   MODAIS
+
+\============================================================ */
+
+
+
+function mostrarModal(texto) {
+
+
+
+    document
+
+        .getElementById("modalTexto")
+
+        .innerText = texto;
+
+
+
+    document
+
+        .getElementById("modal")
+
+        .style.display = "flex";
+
+
+
+}
+
+
+
+
+
+function fecharModal() {
+
+
+
+    document
+
+        .getElementById("modal")
+
+        .style.display = "none";
+
+
+
+}
+
+
+
+
+
+function fecharModalCliente() {
+
+
+
+    document
+
+        .getElementById("modalCliente")
+
+        .style.display = "none";
+
+
+
+}
+
+
+
+
+
+function fecharModalPagamento() {
+
+
+
+    document
+
+        .getElementById("modalPagamento")
+
+        .style.display = "none";
+
+
+
+}
+
+
+
+
+
+function fecharModalComanda() {
+
+
+
+    document
+
+        .getElementById("modalComanda")
+
+        .style.display = "none";
+
+
+
+}
+
+
+
+
+
+/* ============================================================
+
+   TROCAR TELA
+
+\============================================================ */
+
+
+
+function trocarTela(tela) {
+
+
+
+    if (
+
+        usuarioLogado?.tipo === "operador" &&
+
+        (
+
+            tela === "cadastro" ||
+
+            tela === "relatorio"
+
+        )
+
+    ) {
+
+
+
+        mostrarModal(
+
+            "Acesso restrito ao administrador!"
+
+        );
+
+
+
+        return;
+
+
+
+    }
+
+
+
+
+
+    document
+
+        .querySelectorAll(".tela")
+
+        .forEach(
+
+            t => t.classList.remove("ativa")
+
+        );
+
+
+
+
+
+    document
+
+        .getElementById(tela)
+
+        .classList.add("ativa");
+
+
+
+
+
+    document
+
+        .querySelectorAll(".navbar button")
+
+        .forEach(
+
+            b => b.classList.remove("ativo")
+
+        );
+
+
+
+
+
+    if (tela === "caixa") {
+
+
+
+        document
+
+            .getElementById("btnCaixa")
+
+            .classList.add("ativo");
+
+
+
+        carregarCaixa();
+
+
+
+    }
+
+
+
+
+
+    if (tela === "pdv") {
+
+
+
+        document
+
+            .getElementById("btnPDV")
+
+            .classList.add("ativo");
+
+
+
+        carregarMesas();
+
+
+
+    }
+
+
+
+
+
+    if (tela === "cadastro") {
+
+
+
+        document
+
+            .getElementById("btnCadastro")
+
+            .classList.add("ativo");
+
+
+
+    }
+
+
+
+
+
+    if (tela === "relatorio") {
+
+
+
+        document
+
+            .getElementById("btnRelatorio")
+
+            .classList.add("ativo");
+
+
+
+        renderRelatorio();
+
+
+
+    }
+
+
+
+}
+
+
+
+
+
+/* ============================================================
+
+   LOGIN
+
+\============================================================ */
+
+
+
+async function fazerLogin() {
+
+
+
+    const campoUsuario = document.getElementById("loginUser");
+
+    const campoSenha = document.getElementById("loginPass");
+
+
+
+    const usuario = campoUsuario.value.trim();
+
+    const senha = campoSenha.value.trim();
+
+
+
+    if (!usuario || !senha) {
+
+        alert("Informe usuário e senha.");
+
+        return;
+
+    }
+
+
+
+    const botao = document.querySelector("#loginTela button");
+
+
+
+    try {
+
+
+
+        botao.disabled = true;
+
+        botao.innerText = "Entrando...";
+
+
+
+        const dados = await api.login(usuario, senha);
+
+
+
+        console.log("Retorno do login:", dados);
+
+
+
+        if (!dados || dados.sucesso !== true) {
+
+
+
+            alert(
+
+                dados?.erro ||
+
+                "Não foi possível realizar o login."
+
+            );
+
+
+
+            return;
+
+        }
+
+
+
+        usuarioLogado = {
+
+            user: dados.usuario,
+
+            tipo: dados.tipo
+
+        };
+
+
+
+        console.log("Usuário logado:", usuarioLogado);
+
+
+
+        document.getElementById("loginTela").style.display = "none";
+
+
+
+        aplicarPermissoes();
+        await carregarProdutos();
+        await carregarMesas();
+        await carregarCaixa();
+
+
+    } catch (erro) {
+
+
+
+        console.error("Erro no login:", erro);
+
+
+
+        alert(
+
+            "Não foi possível conectar ao servidor.\n\n" +
+
+            erro.message
+
+        );
+
+
+
+    } finally {
+
+
+
+        botao.disabled = false;
+
+        botao.innerText = "Entrar";
+
+
+
+    }
+
+
+
+}
+
+
+
+
+
+/* ============================================================
+
+   PERMISSÕES
+
+\============================================================ */
+
+
+
+function aplicarPermissoes() {
+
+
+
+    const operador =
+
+        usuarioLogado?.tipo === "operador";
+
+
+
+
+
+    document
+
+        .getElementById("btnCadastro")
+
+        .style.display =
+
+            operador
+
+                ? "none"
+
+                : "inline-block";
+
+
+
+
+
+    document
+
+        .getElementById("btnRelatorio")
+
+        .style.display =
+
+            operador
+
+                ? "none"
+
+                : "inline-block";
+
+
+
+}
+
+
+
+
+
+/* ============================================================
+
+   PRODUTOS
+
+\============================================================ */
+
+
+
+async function carregarProdutos() {
+
+
+
+    try {
+
+
+
+        produtos =
+
+            await api.listarProdutos();
+
+
+
+
+
+        renderProdutos();
+
+
+
+
+
+    } catch (erro) {
+
+
+
+        console.error(erro);
+
+
+
+        mostrarModal(
+
+            "Erro ao carregar produtos."
+
+        );
+
+
+
+    }
+
+
+
+}
+
+
+
+
+
+function renderProdutos() {
+
+
+
+    const div =
+
+        document.getElementById(
+
+            "listaProdutos"
+
+        );
+
+
+
+
+
+    div.innerHTML = "";
+
+
+
+
+
+    if (!produtos.length) {
+
+
+
+        div.innerHTML =
+
+            "<p>Nenhum produto cadastrado.</p>";
+
+
+
+        return;
+
+
+
+    }
+
+
+
+
+
+    produtos.forEach(
+
+        produto => {
+
+
+
+            const btn =
+
+                document.createElement(
+
+                    "button"
+
+                );
+
+
+
+
+
+            btn.className =
+
+                "produto-btn";
+
+
+
+
+
+            const imagem =
+
+                produto.imagem ||
+
+                "";
+
+
+
+
+
+            btn.innerHTML = `
+
+
+
+                ${
+
+                    imagem
+
+                    ?
+
+                    `<img
+
+                        src="${imagem}"
+
+                        class="produto-img"
+
+                    >`
+
+                    :
+
+                    ""
+
+                }
+
+
+
+                <span>
+
+
+
+                    ${produto.nome}
+
+
+
+                    <br>
+
+
+
+                    <small>
+
+                        R$ ${formatarPreco(
+
+                            produto.preco
+
+                        )}
+
+                    </small>
+
+
+
+                </span>
+
+
+
+            `;
+
+
+
+
+
+            btn.onclick = () =>
+
+                adicionarProduto(
+
+                    produto
+
+                );
+
+
+
+
+
+            div.appendChild(btn);
+
+
+
+        }
+
+    );
+
+
+
+}
+
+
+
+
+
+/* ============================================================
+
+   CADASTRO DE PRODUTO
+
+\============================================================ */
+
+
+
+async function cadastrarProduto() {
+
+
+
+    const nome =
+
+        document
+
+            .getElementById(
+
+                "nomeProduto"
+
+            )
+
+            .value
+
+            .trim();
+
+
+
+
+
+    const preco =
+
+        parseFloat(
+
+            document
+
+                .getElementById(
+
+                    "precoProduto"
+
+                )
+
+                .value
+
+        );
+
+
+
+
+
+    if (
+
+        !nome ||
+
+        isNaN(preco) ||
+
+        preco < 0
+
+    ) {
+
+
+
+        mostrarModal(
+
+            "Preencha corretamente o nome e o preço."
+
+        );
+
+
+
+        return;
+
+
+
+    }
+
+
+
+
+
+    try {
+
+
+
+        await api.cadastrarProduto({
+
+
+
+            nome,
+
+
+
+            preco,
+
+
+
+            imagem: "",
+
+
+
+            categoria: "",
+
+
+
+            estoque: 0
+
+
+
+        });
+
+
+
+
+
+        document
+
+            .getElementById(
+
+                "nomeProduto"
+
+            )
+
+            .value = "";
+
+
+
+
+
+        document
+
+            .getElementById(
+
+                "precoProduto"
+
+            )
+
+            .value = "";
+
+
+
+
+
+        document
+
+            .getElementById(
+
+                "imgProduto"
+
+            )
+
+            .value = "";
+
+
+
+
+
+        await carregarProdutos();
+
+
+
+
+
+        mostrarModal(
+
+            "Produto cadastrado com sucesso!"
+
+        );
+
+
+
+
+
+    } catch (erro) {
+
+
+
+        console.error(erro);
+
+
+
+        mostrarModal(
+
+            "Erro ao cadastrar produto: " +
+
+            erro.message
+
+        );
+
+
+
+    }
+
+
+
+}
+
+
+
+
+
+/* ============================================================
+
+   MESAS
+
+\============================================================ */
+
+
+
+function abrirMesa() {
+
+
+
+    if (!caixaAberto) {
+
+
+
+        mostrarModal(
+
+            "Abra o caixa primeiro!"
+
+        );
+
+
+
+        return;
+
+
+
+    }
+
+
+
+
+
+    document
+
+        .getElementById(
+
+            "nomeClienteMesa"
+
+        )
+
+        .value = "";
+
+
+
+
+
+    document
+
+        .getElementById(
+
+            "modalCliente"
+
+        )
+
+        .style.display = "flex";
+
+
+
+}
+
+
+
+
+
+async function confirmarMesa() {
+
+
+
+    const cliente =
+
+        document
+
+            .getElementById(
+
+                "nomeClienteMesa"
+
+            )
+
+            .value
+
+            .trim();
+
+
+
+
+
+    try {
+
+
+
+        await api.abrirMesa(
+
+            cliente
+
+        );
+
+
+
+
+
+        fecharModalCliente();
+
+
+
+
+
+        await carregarMesas();
+
+
+
+
+
+    } catch (erro) {
+
+
+
+        console.error(erro);
+
+
+
+        mostrarModal(
+
+            "Erro ao abrir mesa: " +
+
+            erro.message
+
+        );
+
+
+
+    }
+
+
+
+}
+
+
+
+
+
+async function carregarMesas() {
+
+
+
+    try {
+
+
+
+        mesas =
+
+            await api.listarMesas();
+
+
+
+
+
+        // Se a mesa atual foi fechada,
+
+        // limpa a seleção.
+
+
+
+        if (
+
+            mesaAtual &&
+
+            !mesas.some(
+
+                m =>
+
+                    Number(m.id) ===
+
+                    Number(mesaAtual.id)
+
+            )
+
+        ) {
+
+
+
+            mesaAtual = null;
+
+
+
+            document
+
+                .getElementById(
+
+                    "itens"
+
+                )
+
+                .innerHTML = "";
+
+
+
+            document
+
+                .getElementById(
+
+                    "total"
+
+                )
+
+                .innerText =
+
+                    "Total: R$ 0,00";
+
+
+
+        }
+
+
+
+
+
+        renderMesas();
+
+
+
+
+
+    } catch (erro) {
+
+
+
+        console.error(erro);
+
+
+
+    }
+
+
+
+}
+
+
+
+
+
+function calcularTempo(abertura) {
+
+
+
+    if (!abertura) {
+
+        return "";
+
+    }
+
+
+
+
+
+    const agora =
+
+        Date.now();
+
+
+
+
+
+    const diff =
+
+        Math.max(
+
+            0,
+
+            agora - Number(abertura)
+
+        );
+
+
+
+
+
+    const minutos =
+
+        Math.floor(
+
+            diff / 60000
+
+        );
+
+
+
+
+
+    const horas =
+
+        Math.floor(
+
+            minutos / 60
+
+        );
+
+
+
+
+
+    if (horas > 0) {
+
+
+
+        return `${horas}h ${
+
+            minutos % 60
+
+        }min`;
+
+
+
+    }
+
+
+
+
+
+    return `${minutos} min`;
+
+
+
+}
+
+
+
+
+
+function renderMesas() {
+
+
+
+    const lista =
+
+        document.getElementById(
+
+            "listaMesas"
+
+        );
+
+
+
+
+
+    const busca =
+
+        document
+
+            .getElementById(
+
+                "buscaMesa"
+
+            )
+
+            .value
+
+            .toLowerCase()
+
+            .trim();
+
+
+
+
+
+    lista.innerHTML = "";
+
+
+
+
+
+    if (!mesas.length) {
+
+
+
+        lista.innerHTML =
+
+            "<p>Nenhuma mesa aberta.</p>";
+
+
+
+        return;
+
+
+
+    }
+
+
+
+
+
+    mesas.forEach(
+
+        mesa => {
+
+
+
+            const nome =
+
+                String(
+
+                    mesa.cliente || ""
+
+                )
+
+                .toLowerCase();
+
+
+
+
+
+            const idMesa =
+
+                "mesa " +
+
+                mesa.id;
+
+
+
+
+
+            if (
+
+                busca &&
+
+                !nome.includes(busca) &&
+
+                !idMesa.includes(busca)
+
+            ) {
+
+
+
+                return;
+
+
+
+            }
+
+
+
+
+
+            const el =
+
+                document.createElement(
+
+                    "div"
+
+                );
+
+
+
+
+
+            el.className = "mesa";
+
+
+
+
+
+            const tempo =
+
+                calcularTempo(
+
+                    mesa.abertura
+
+                );
+
+
+
+
+
+            el.innerText =
+
+                mesa.cliente
+
+
+
+                ?
+
+
+
+                `Mesa ${mesa.id} - ${
+
+                    mesa.cliente
+
+                } ⏱️ ${tempo}`
+
+
+
+                :
+
+
+
+                `Mesa ${mesa.id} ⏱️ ${
+
+                    tempo
+
+                }`;
+
+
+
+
+
+            el.onclick = () =>
+
+                selecionarMesa(
+
+                    mesa
+
+                );
+
+
+
+
+
+            if (
+
+                mesaAtual &&
+
+                Number(mesaAtual.id) ===
+
+                Number(mesa.id)
+
+            ) {
+
+
+
+                el.classList.add(
+
+                    "ativa"
+
+                );
+
+
+
+            }
+
+
+
+
+
+            lista.appendChild(el);
+
+
+
+        }
+
+    );
+
+
+
+}
+
+
+
+
+
+async function selecionarMesa(mesa) {
+
+
+
+    mesaAtual = {
+
+
+
+        ...mesa,
+
+
+
+        itens: []
+
+
+
+    };
+
+
+
+
+
+    renderMesas();
+
+
+
+
+
+    await carregarItensMesa();
+
+
+
+}
+
+
+
+
+
+/* ============================================================
+
+   ITENS DA MESA
+
+\============================================================ */
+
+
+
+async function carregarItensMesa() {
+
+
+
+    if (!mesaAtual) {
+
+        return;
+
+    }
+
+
+
+
+
+    try {
+
+
+
+        mesaAtual.itens =
+
+            await api.listarItensMesa(
+
+                mesaAtual.id
+
+            );
+
+
+
+
+
+        renderComanda();
+
+
+
+
+
+    } catch (erro) {
+
+
+
+        console.error(erro);
+
+
+
+        mostrarModal(
+
+            "Erro ao carregar a comanda."
+
+        );
+
+
+
+    }
+
+
+
+}
+
+
+
+
+async function adicionarProduto(produto) {
+
+    if (!mesaAtual) {
+
+        mostrarModal(
+            "Selecione uma mesa primeiro."
+        );
+
+        return;
+    }
+
+    /*
+     * ========================================================
+     * 1. ATUALIZA O FRONT-END IMEDIATAMENTE
+     * ========================================================
+     */
+
+    if (!mesaAtual.itens) {
+        mesaAtual.itens = [];
+    }
+
+    // Procura se o produto já existe na comanda
+    const itemExistente = mesaAtual.itens.find(
+        item => item.nome === produto.nome
+    );
+
+    if (itemExistente) {
+
+        itemExistente.qtd =
+            Number(itemExistente.qtd || 0) + 1;
+
+    } else {
+
+        mesaAtual.itens.push({
+
+            nome: produto.nome,
+
+            qtd: 1,
+
+            preco: Number(produto.preco || 0)
+
+        });
+
+    }
+
+    // Renderiza imediatamente
+    renderComanda();
+
+
+    /*
+     * ========================================================
+     * 2. ENVIA PARA O BACKEND
+     * ========================================================
+     */
+
+    try {
+
+        await api.adicionarItemMesa(
+
+            mesaAtual.id,
+
+            produto.nome,
+
+            1,
+
+            produto.preco
+
+        );
+
+
+        /*
+         * ====================================================
+         * 3. BACKEND RESPONDEU
+         * ====================================================
+         *
+         * Agora sincronizamos com o Google Sheets.
+         */
+
+        await carregarItensMesa();
+
+
+    } catch (erro) {
+
+        console.error(
+            "Erro ao adicionar produto:",
+            erro
+        );
+
+
+        /*
+         * ====================================================
+         * 4. DESFAZ A ALTERAÇÃO LOCAL
+         * ====================================================
+         */
+
+        const item = mesaAtual.itens.find(
+            item => item.nome === produto.nome
+        );
+
+        if (item) {
+
+            item.qtd =
+                Number(item.qtd || 0) - 1;
+
+            if (item.qtd <= 0) {
+
+                mesaAtual.itens =
+                    mesaAtual.itens.filter(
+                        i => i !== item
+                    );
+
+            }
+
+        }
+
+
+        renderComanda();
+
+
+        mostrarModal(
+            "Não foi possível adicionar o produto: " +
+            erro.message
+        );
+
+    }
+
+}
+
+
+
+
+/* ============================================================
+
+   COMANDA
+
+\============================================================ */
+
+
+
+function renderComanda() {
+
+
+
+    const divItens =
+
+        document.getElementById(
+
+            "itens"
+
+        );
+
+
+
+
+
+    const totalDiv =
+
+        document.getElementById(
+
+            "total"
+
+        );
+
+
+
+
+
+    divItens.innerHTML = "";
+
+
+
+
+
+    if (!mesaAtual) {
+
+
+
+        totalDiv.innerText =
+
+            "Total: R$ 0,00";
+
+
+
+        return;
+
+
+
+    }
+
+
+
+
+
+    const itens =
+
+        mesaAtual.itens || [];
+
+
+
+
+
+    let soma = 0;
+
+
+
+
+
+    if (!itens.length) {
+
+
+
+        divItens.innerHTML =
+
+            "<p>Nenhum item na comanda.</p>";
+
+
+
+    }
+
+
+
+
+
+    itens.forEach(
+
+        (item, index) => {
+
+
+
+            const subtotal =
+
+                Number(item.preco || 0) *
+
+                Number(item.qtd || 0);
+
+
+
+
+
+            soma += subtotal;
+
+
+
+
+
+            const el =
+
+                document.createElement(
+
+                    "div"
+
+                );
+
+
+
+
+
+            el.className = "item";
+
+
+
+
+
+            el.innerHTML = `
+
+
+
+                <div class="item-info">
+
+
+
+                    <strong>
+
+                        ${item.qtd}x
+
+                        ${item.nome}
+
+                    </strong>
+
+
+
+                    <br>
+
+
+
+                    <small>
+
+                        R$
+
+                        ${formatarPreco(
+
+                            subtotal
+
+                        )}
+
+                    </small>
+
+
+
+                </div>
+
+
+
+
+
+                <div class="item-acoes">
+
+
+
+                    <button
+
+                        onclick="alterarQtd(
+
+                            ${index},
+
+                            1
+
+                        )"
+
+                    >
+
+                        ➕
+
+                    </button>
+
+
+
+
+
+                    <button
+
+                        onclick="alterarQtd(
+
+                            ${index},
+
+                            -1
+
+                        )"
+
+                    >
+
+                        ➖
+
+                    </button>
+
+
+
+
+
+                    <button
+
+                        onclick="removerItem(
+
+                            ${index}
+
+                        )"
+
+                        style="background:#e74c3c;"
+
+                    >
+
+                        ❌
+
+                    </button>
+
+
+
+                </div>
+
+
+
+            `;
+
+
+
+
+
+            divItens.appendChild(el);
+
+
+
+        }
+
+    );
+
+
+
+
+
+    let desconto =
+
+        Number(
+
+            mesaAtual.desconto || 0
+
+        );
+
+
+
+
+
+    if (desconto < 0) {
+
+        desconto = 0;
+
+    }
+
+
+
+
+
+    const totalFinal =
+
+        Math.max(
+
+            0,
+
+            soma - desconto
+
+        );
+
+
+
+
+
+    if (desconto > 0) {
+
+
+
+        const elDesc =
+
+            document.createElement(
+
+                "div"
+
+            );
+
+
+
+
+
+        elDesc.style.color =
+
+            "#e74c3c";
+
+
+
+
+
+        elDesc.style.fontWeight =
+
+            "bold";
+
+
+
+
+
+        elDesc.style.marginTop =
+
+            "10px";
+
+
+
+
+
+        elDesc.innerHTML = `
+
+            💸 Desconto:
+
+            - R$ ${formatarPreco(
+
+                desconto
+
+            )}
+
+        `;
+
+
+
+
+
+        divItens.appendChild(
+
+            elDesc
+
+        );
+
+
+
+    }
+
+
+
+
+
+    totalDiv.innerText =
+
+        `Total: R$ ${
+
+            formatarPreco(
+
+                totalFinal
+
+            )
+
+        }`;
+
+
+
+}
+
+
+
+
+
+/* ============================================================
+
+   ALTERAR QUANTIDADE
+
+\============================================================ */
+
+async function alterarQtd(index, valor) {
+
+    if (!mesaAtual) {
+        return;
+    }
+
+    const item = mesaAtual.itens[index];
+
+    if (!item) {
+        return;
+    }
+
+    const quantidadeAnterior = Number(item.qtd || 0);
+    const novaQuantidade =
+        quantidadeAnterior + Number(valor);
+
+    /*
+     * ========================================================
+     * 1. ATUALIZA O FRONT-END IMEDIATAMENTE
+     * ========================================================
+     */
+
+    if (novaQuantidade <= 0) {
+
+        // Remove visualmente da comanda
+        mesaAtual.itens.splice(index, 1);
+
+    } else {
+
+        // Atualiza quantidade visualmente
+        item.qtd = novaQuantidade;
+
+    }
+
+    renderComanda();
+
+
+    /*
+     * ========================================================
+     * 2. ENVIA A ALTERAÇÃO PARA O BACKEND
+     * ========================================================
+     */
+
+    try {
+
+        if (novaQuantidade <= 0) {
+
+            await api.removerItemMesa(
+
+                mesaAtual.id,
+
+                item.nome
+
+            );
+
+        } else {
+
+            await api.alterarQuantidadeItem(
+
+                mesaAtual.id,
+
+                item.nome,
+
+                novaQuantidade
+
+            );
+
+        }
+
+
+        /*
+         * Backend confirmou.
+         *
+         * Não precisamos buscar a comanda novamente
+         * porque o Front já está atualizado.
+         */
+
+    } catch (erro) {
+
+        console.error(
+            "Erro ao alterar quantidade:",
+            erro
+        );
+
+
+        /*
+         * ====================================================
+         * 3. DESFAZ A ALTERAÇÃO SE DER ERRO
+         * ====================================================
+         */
+
+        if (novaQuantidade <= 0) {
+
+            // Recoloca o item na posição original
+            mesaAtual.itens.splice(
+                index,
+                0,
+                {
+                    ...item,
+                    qtd: quantidadeAnterior
+                }
+            );
+
+        } else {
+
+            // Volta para a quantidade anterior
+            item.qtd = quantidadeAnterior;
+
+        }
+
+
+        renderComanda();
+
+
+        mostrarModal(
+            "Não foi possível alterar a quantidade: " +
+            erro.message
+        );
+
+    }
+
+}
+
+/* ============================================================
+
+   REMOVER ITEM
+
+\============================================================ */
+async function removerItem(index) {
+
+    if (!mesaAtual) {
+        return;
+    }
+
+    const item = mesaAtual.itens[index];
+
+    if (!item) {
+        return;
+    }
+
+    /*
+     * Guarda o item completo para podermos
+     * restaurá-lo caso o backend dê erro.
+     */
+
+    const itemRemovido = {
+        ...item
+    };
+
+
+    /*
+     * ========================================================
+     * 1. REMOVE IMEDIATAMENTE DO FRONT-END
+     * ========================================================
+     */
+
+    mesaAtual.itens.splice(index, 1);
+
+    renderComanda();
+
+
+    /*
+     * ========================================================
+     * 2. ENVIA PARA O BACKEND
+     * ========================================================
+     */
+
+    try {
+
+        await api.removerItemMesa(
+
+            mesaAtual.id,
+
+            item.nome
+
+        );
+
+
+        /*
+         * Backend confirmou.
+         *
+         * Não precisamos chamar carregarItensMesa().
+         */
+
+    } catch (erro) {
+
+        console.error(
+            "Erro ao remover item:",
+            erro
+        );
+
+
+        /*
+         * ====================================================
+         * 3. RESTAURA O ITEM SE O BACKEND FALHAR
+         * ====================================================
+         */
+
+        mesaAtual.itens.splice(
+            index,
+            0,
+            itemRemovido
+        );
+
+        renderComanda();
+
+
+        mostrarModal(
+            "Não foi possível remover o item: " +
+            erro.message
+        );
+
+    }
+
+}
+
+/* ============================================================
+
+   DESCONTO
+
+\============================================================ */
+
+
+
+async function aplicarDesconto() {
+
+
+
+    if (!mesaAtual) {
+
+
+
+        mostrarModal(
+
+            "Selecione uma mesa."
+
+        );
+
+
+
+        return;
+
+
+
+    }
+
+
+
+
+
+    const valor =
+
+        prompt(
+
+            "Digite o valor do desconto:"
+
+        );
+
+
+
+
+
+    if (
+
+        valor === null
+
+    ) {
+
+
+
+        return;
+
+
+
+    }
+
+
+
+
+
+    const desconto =
+
+        parseFloat(valor);
+
+
+
+
+
+    if (
+
+        isNaN(desconto) ||
+
+        desconto < 0
+
+    ) {
+
+
+
+        mostrarModal(
+
+            "Desconto inválido!"
+
+        );
+
+
+
+        return;
+
+
+
+    }
+
+
+
+
+
+    try {
+
+
+
+        await api.atualizarDescontoMesa(
+
+
+
+            mesaAtual.id,
+
+
+
+            desconto
+
+
+
+        );
+
+
+
+
+
+        mesaAtual.desconto =
+
+            desconto;
+
+
+
+
+
+        renderComanda();
+
+
+
+
+
+        await carregarMesas();
+
+
+
+
+
+    } catch (erro) {
+
+
+
+        console.error(erro);
+
+
+
+        mostrarModal(
+
+            "Erro ao salvar desconto."
+
+        );
+
+
+
+    }
+
+
+
+}
+
+
+
+
+
+/* ============================================================
+
+   CALCULAR TOTAL
+
+\============================================================ */
+
+
+
+function calcularTotalMesa() {
+
+
+
+    if (!mesaAtual) {
+
+        return 0;
+
+    }
+
+
+
+
+
+    const itens =
+
+        mesaAtual.itens || [];
+
+
+
+
+
+    let total = 0;
+
+
+
+
+
+    itens.forEach(
+
+        item => {
+
+
+
+            total +=
+
+                Number(item.preco || 0) *
+
+                Number(item.qtd || 0);
+
+
+
+        }
+
+    );
+
+
+
+
+
+    const desconto =
+
+        Number(
+
+            mesaAtual.desconto || 0
+
+        );
+
+
+
+
+
+    return Math.max(
+
+        0,
+
+        total - desconto
+
+    );
+
+
+
+}
+
+
+
+
+
+/* ============================================================
+
+   FECHAR CONTA
+
+\============================================================ */
+
+
+
+function fecharConta() {
+
+
+
+    if (!mesaAtual) {
+
+
+
+        mostrarModal(
+
+            "Selecione uma mesa."
+
+        );
+
+
+
+        return;
+
+
+
+    }
+
+
+
+
+
+    if (
+
+        !mesaAtual.itens ||
+
+        !mesaAtual.itens.length
+
+    ) {
+
+
+
+        mostrarModal(
+
+            "A mesa não possui itens."
+
+        );
+
+
+
+        return;
+
+
+
+    }
+
+
+
+
+
+    if (!caixaAberto) {
+
+
+
+        mostrarModal(
+
+            "O caixa está fechado."
+
+        );
+
+
+
+        return;
+
+
+
+    }
+
+
+
+
+
+    document
+
+        .getElementById(
+
+            "modalPagamento"
+
+        )
+
+        .style.display = "flex";
+
+
+
+}
+
+
+
+
+
+/* ============================================================
+
+   SELECIONAR PAGAMENTO
+
+\============================================================ */
+
+
+
+async function selecionarPagamento(
+
+    forma
+
+) {
+
+
+
+    if (!mesaAtual) {
+
+        return;
+
+    }
+
+
+
+
+
+    const mesaFechando =
+
+        mesaAtual;
+
+
+
+
+
+    const total =
+
+        calcularTotalMesa();
+
+
+
+
+
+    const desconto =
+
+        Number(
+
+            mesaFechando.desconto || 0
+
+        );
+
+
+
+
+
+    const cliente =
+
+        mesaFechando.cliente || "";
+
+
+
+
+
+    const operador =
+
+        usuarioLogado?.user || "";
+
+
+
+
+
+    const botaoPagamento =
+
+        document.querySelectorAll(
+
+            "#modalPagamento button"
+
+        );
+
+
+
+
+
+    botaoPagamento.forEach(
+
+        b => b.disabled = true
+
+    );
+
+
+
+
+
+    try {
+
+
+
+        /*
+
+         * PRIMEIRO:
+
+         * registra a venda.
+
+         */
+
+
+
+        await api.registrarVenda({
+
+
+
+            mesa:
+
+                mesaFechando.id,
+
+
+
+            cliente:
+
+
+
+                cliente,
+
+
+
+            total:
+
+
+
+                total,
+
+
+
+            desconto:
+
+
+
+                desconto,
+
+
+
+            pagamento:
+
+
+
+                forma,
+
+
+
+            operador:
+
+
+
+                operador
+
+
+
+        });
+
+
+
+
+
+        /*
+
+         * DEPOIS:
+
+         * limpa os itens.
+
+         */
+
+
+
+        await api.limparItensMesa(
+
+
+
+            mesaFechando.id
+
+
+
+        );
+
+
+
+
+
+        /*
+
+         * POR ÚLTIMO:
+
+         * fecha a mesa.
+
+         */
+
+
+
+        await api.fecharMesa(
+
+
+
+            mesaFechando.id
+
+
+
+        );
+
+
+
+
+
+        /*
+
+         * Monta a comanda antes
+
+         * de limpar a referência.
+
+         */
+
+
+
+        const texto =
+
+            gerarTextoComanda(
+
+
+
+                mesaFechando,
+
+
+
+                forma,
+
+
+
+                total
+
+
+
+            );
+
+
+
+
+
+        document
+
+            .getElementById(
+
+                "textoComanda"
+
+            )
+
+            .innerText = texto;
+
+
+
+
+
+        document
+
+            .getElementById(
+
+                "modalPagamento"
+
+            )
+
+            .style.display = "none";
+
+
+
+
+
+        document
+
+            .getElementById(
+
+                "modalComanda"
+
+            )
+
+            .style.display = "flex";
+
+
+
+
+
+        mesaAtual = null;
+
+
+
+
+
+        document
+
+            .getElementById(
+
+                "itens"
+
+            )
+
+            .innerHTML = "";
+
+
+
+
+
+        document
+
+            .getElementById(
+
+                "total"
+
+            )
+
+            .innerText =
+
+                "Total: R$ 0,00";
+
+
+
+
+
+        await carregarMesas();
+
+
+
+
+
+    } catch (erro) {
+
+
+
+        console.error(erro);
+
+
+
+        mostrarModal(
+
+            "Não foi possível finalizar a conta: " +
+
+            erro.message
+
+        );
+
+
+
+    } finally {
+
+
+
+        botaoPagamento.forEach(
+
+            b => b.disabled = false
+
+        );
+
+
+
+    }
+
+
+
+}
+
+
+
+
+
+/* ============================================================
+
+   TEXTO DA COMANDA
+
+\============================================================ */
+
+
+
+function gerarTextoComanda(
+
+    mesa,
+
+    forma,
+
+    total
+
+) {
+
+
+
+    const nome =
+
+        mesa.cliente
+
+            ? `Cliente: ${mesa.cliente}\n`
+
+            : "";
+
+
+
+
+
+    let lista = "";
+
+
+
+
+
+    (mesa.itens || [])
+
+        .forEach(
+
+            item => {
+
+
+
+                const subtotal =
+
+                    Number(item.preco || 0) *
+
+                    Number(item.qtd || 0);
+
+
+
+
+
+                lista +=
+
+                    `${item.qtd}x ${
+
+                        item.nome
+
+                    } - R$ ${
+
+                        formatarPreco(
+
+                            subtotal
+
+                        )
+
+                    }\n`;
+
+
+
+            }
+
+        );
+
+
+
+
+
+    const desconto =
+
+        Number(
+
+            mesa.desconto || 0
+
+        );
+
+
+
+
+
+    return `🧾 COMANDA
+
+
+
+Mesa: ${mesa.id}
+
+${nome}
+
+\-------------------
+
+${lista}-------------------
+
+Forma: ${forma}
+
+${
+
+    desconto > 0
+
+        ?
+
+        `Desconto: R$ ${
+
+            formatarPreco(
+
+                desconto
+
+            )
+
+        }\n`
+
+        :
+
+        ""
+
+}
+
+Total: R$ ${formatarPreco(total)}
+
+
+
+Obrigado!`;
+
+
+
+}
+
+
+
+
+
+/* ============================================================
+
+   IMPRIMIR
+
+\============================================================ */
+
+
+
+function imprimirComanda() {
+
+
+
+    const conteudo =
+
+        document
+
+            .getElementById(
+
+                "textoComanda"
+
+            )
+
+            .innerText;
+
+
+
+
+
+    const win =
+
+        window.open(
+
+            "",
+
+            "",
+
+            "width=300,height=600"
+
+        );
+
+
+
+
+
+    if (!win) {
+
+
+
+        mostrarModal(
+
+            "O navegador bloqueou a janela de impressão."
+
+        );
+
+
+
+        return;
+
+
+
+    }
+
+
+
+
+
+    win.document.write(`
+
+
+
+        <html>
+
+
+
+        <head>
+
+
+
+            <title>Comanda</title>
+
+
+
+        </head>
+
+
+
+        <body>
+
+
+
+            <pre
+
+                style="
+
+                    font-family:monospace;
+
+                    white-space:pre-wrap;
+
+                "
+
+            >${conteudo}</pre>
+
+
+
+        </body>
+
+
+
+        </html>
+
+
+
+    `);
+
+
+
+
+
+    win.document.close();
+
+
+
+    win.focus();
+
+
+
+    win.print();
+
+
+
+}
+
+
+async function abrirCaixa() {
+
+
+
+    const valor =
+
+        parseFloat(
+
+            document
+
+                .getElementById(
+
+                    "valorAbertura"
+
+                )
+
+                .value
+
+        );
+
+
+
+
+
+    if (
+
+        isNaN(valor) ||
+
+        valor < 0
+
+    ) {
+
+
+
+        mostrarModal(
+
+            "Informe um valor válido."
+
+        );
+
+
+
+        return;
+
+
+
+    }
+
+
+
+
+
+    try {
+
+
+
+        await api.abrirCaixa(
+
+            valor
+
+        );
+
+
+
+
+
+        document
+
+            .getElementById(
+
+                "valorAbertura"
+
+            )
+
+            .value = "";
+
+
+
+
+
+        await carregarCaixa();
+
+
+
+
+
+        mostrarModal(
+
+            "Caixa aberto com sucesso!"
+
+        );
+
+
+
+
+
+    } catch (erro) {
+
+
+
+        console.error(erro);
+
+
+
+        mostrarModal(
+
+            erro.message
+
+        );
+
+
+
+    }
+
+
+
+}
+
+
+
+
+
+async function fecharCaixa() {
+
+
+
+    if (!caixaAberto) {
+
+
+
+        mostrarModal(
+
+            "O caixa já está fechado."
+
+        );
+
+
+
+        return;
+
+
+
+    }
+
+
+
+
+
+    const dinheiro =
+
+        parseFloat(
+
+            document
+
+                .getElementById(
+
+                    "fechDinheiro"
+
+                )
+
+                .value
+
+        ) || 0;
+
+
+
+
+
+    const credito =
+
+        parseFloat(
+
+            document
+
+                .getElementById(
+
+                    "fechCredito"
+
+                )
+
+                .value
+
+        ) || 0;
+
+
+
+
+
+    const debito =
+
+        parseFloat(
+
+            document
+
+                .getElementById(
+
+                    "fechDebito"
+
+                )
+
+                .value
+
+        ) || 0;
+
+
+
+
+
+    const pix =
+
+        parseFloat(
+
+            document
+
+                .getElementById(
+
+                    "fechPix"
+
+                )
+
+                .value
+
+        ) || 0;
+
+
+
+
+
+    abrirConfirmacao(
+
+
+
+        "Tem certeza que deseja fechar o caixa?",
+
+
+
+        async () => {
+
+
+
+            try {
+
+
+
+                await api.fecharCaixa(
+
+
+
+                    dinheiro,
+
+
+
+                    credito,
+
+
+
+                    debito,
+
+
+
+                    pix
+
+
+
+                );
+
+
+
+
+
+                document
+
+                    .getElementById(
+
+                        "fechDinheiro"
+
+                    )
+
+                    .value = "";
+
+
+
+
+
+                document
+
+                    .getElementById(
+
+                        "fechCredito"
+
+                    )
+
+                    .value = "";
+
+
+
+
+
+                document
+
+                    .getElementById(
+
+                        "fechDebito"
+
+                    )
+
+                    .value = "";
+
+
+
+
+
+                document
+
+                    .getElementById(
+
+                        "fechPix"
+
+                    )
+
+                    .value = "";
+
+
+
+
+
+                await carregarCaixa();
+
+
+
+
+
+                mostrarModal(
+
+                    "Caixa fechado com sucesso!"
+
+                );
+
+
+
+
+
+            } catch (erro) {
+
+
+
+                console.error(erro);
+
+
+
+                mostrarModal(
+
+                    "Erro ao fechar caixa: " +
+
+                    erro.message
+
+                );
+
+
+
+            }
+
+
+
+        }
+
+
+
+    );
+
+
+
+}
+
+
+
+
+
+async function carregarCaixa() {
+
+
+
+    try {
+
+
+
+        const resultado =
+
+            await api.listarCaixa();
+
+
+
+
+
+        caixaAberto =
+
+            Boolean(
+
+                resultado.aberto
+
+            );
+
+
+
+
+
+        historicoCaixa =
+
+            resultado.dados || [];
+
+
+
+
+
+        atualizarStatusCaixa();
+
+
+
+
+
+    } catch (erro) {
+
+
+
+        console.error(erro);
+
+
+
+        document
+
+            .getElementById(
+
+                "statusCaixa"
+
+            )
+
+            .innerText =
+
+                "⚠️ Erro ao carregar caixa.";
+
+
+
+    }
+
+
+
+}
+
+
+
+
+
+function atualizarStatusCaixa() {
+
+
+
+    const status =
+
+        document.getElementById(
+
+            "statusCaixa"
+
+        );
+
+
+
+
+
+    const botaoAbrir =
+
+        document.getElementById(
+
+            "btnAbrirCaixa"
+
+        );
+
+
+
+
+
+    if (caixaAberto) {
+
+
+
+        status.innerText =
+
+            "🟢 Caixa aberto";
+
+
+
+
+
+        status.style.color =
+
+            "#27ae60";
+
+
+
+
+
+        botaoAbrir.disabled =
+
+            true;
+
+
+
+    } else {
+
+
+
+        status.innerText =
+
+            "🔴 Caixa fechado";
+
+
+
+
+
+        status.style.color =
+
+            "#e74c3c";
+
+
+
+
+
+        botaoAbrir.disabled =
+
+            false;
+
+
+
+    }
+
+
+
+}
+
+
+
+
+
+/* ============================================================
+
+   RELATÓRIO
+
+\============================================================ */
+
+
+
+async function renderRelatorio() {
+
+
+
+    const div =
+
+        document.getElementById(
+
+            "relatorioConteudo"
+
+        );
+
+
+
+
+
+    const totalVendas =
+
+        document.getElementById(
+
+            "totalVendas"
+
+        );
+
+
+
+
+
+    div.innerHTML =
+
+        "<p>Carregando relatório...</p>";
+
+
+
+
+
+    try {
+
+
+
+        const [resultadoVendas, resultadoCaixa] =
+
+            await Promise.all([
+
+
+
+                api.listarVendas(),
+
+
+
+                api.listarCaixa()
+
+
+
+            ]);
+
+
+
+
+
+        vendas =
+
+            resultadoVendas.dados || [];
+
+
+
+
+
+        historicoCaixa =
+
+            resultadoCaixa.dados || [];
+
+
+
+
+
+        div.innerHTML = "";
+
+
+
+
+
+        let total = 0;
+
+
+
+
+
+        /*
+
+         * VENDAS
+
+         */
+
+
+
+        vendas
+
+            .slice()
+
+            .reverse()
+
+            .forEach(
+
+                venda => {
+
+
+
+                    total +=
+
+                        Number(
+
+                            venda.total || 0
+
+                        );
+
+
+
+
+
+                    const card =
+
+                        document.createElement(
+
+                            "div"
+
+                        );
+
+
+
+
+
+                    card.className =
+
+                        "venda";
+
+
+
+
+
+                    card.innerHTML = `
+
+
+
+                        <strong>
+
+                            🧾 Venda
+
+                        </strong>
+
+
+
+                        <br>
+
+
+
+                        Mesa:
+
+                        ${venda.mesa}
+
+
+
+                        ${
+
+                            venda.cliente
+
+                            ?
+
+                            `<br>
+
+                             Cliente:
+
+                             ${venda.cliente}`
+
+                            :
+
+                            ""
+
+                        }
+
+
+
+                        <br>
+
+
+
+                        💰 Total:
+
+                        R$ ${formatarPreco(
+
+                            venda.total
+
+                        )}
+
+
+
+                        <br>
+
+
+
+                        💸 Desconto:
+
+                        R$ ${formatarPreco(
+
+                            venda.desconto
+
+                        )}
+
+
+
+                        <br>
+
+
+
+                        💳 Pagamento:
+
+                        ${venda.pagamento}
+
+
+
+                        <br>
+
+
+
+                        👤 Operador:
+
+                        ${venda.operador || "-"}
+
+
+
+                        <br>
+
+
+
+                        🕒
+
+                        ${formatarData(
+
+                            venda.data
+
+                        )}
+
+
+
+                    `;
+
+
+
+
+
+                    div.appendChild(
+
+                        card
+
+                    );
+
+
+
+                }
+
+            );
+
+
+
+
+
+        totalVendas.innerText =
+
+            `Total vendido: R$ ${
+
+                formatarPreco(
+
+                    total
+
+                )
+
+            }`;
+
+
+
+
+
+        /*
+
+         * CAIXA
+
+         */
+
+
+
+        if (
+
+            historicoCaixa.length
+
+        ) {
+
+
+
+            const titulo =
+
+                document.createElement(
+
+                    "h3"
+
+                );
+
+
+
+
+
+            titulo.innerText =
+
+                "💰 Histórico do Caixa";
+
+
+
+
+
+            div.appendChild(
+
+                titulo
+
+            );
+
+
+
+
+
+            historicoCaixa
+
+                .slice()
+
+                .reverse()
+
+                .forEach(
+
+                    registro => {
+
+
+
+                        const card =
+
+                            document.createElement(
+
+                                "div"
+
+                            );
+
+
+
+
+
+                        card.className =
+
+                            "venda";
+
+
+
+
+
+                        if (
+
+                            registro.tipo ===
+
+                            "Abertura"
+
+                        ) {
+
+
+
+                            card.innerHTML = `
+
+
+
+                                🟢
+
+                                <strong>
+
+                                    Abertura de Caixa
+
+                                </strong>
+
+
+
+                                <br>
+
+
+
+                                Valor inicial:
+
+                                R$ ${
+
+                                    formatarPreco(
+
+                                        registro.valor
+
+                                    )
+
+                                }
+
+
+
+                                <br>
+
+
+
+                                🕒 ${
+
+                                    formatarData(
+
+                                        registro.data
+
+                                    )
+
+                                }
+
+
+
+                            `;
+
+
+
+                        } else {
+
+
+
+                            card.innerHTML = `
+
+
+
+                                🔴
+
+                                <strong>
+
+                                    Fechamento de Caixa
+
+                                </strong>
+
+
+
+                                <br>
+
+
+
+                                💵 Dinheiro:
+
+                                R$ ${
+
+                                    formatarPreco(
+
+                                        registro.dinheiro
+
+                                    )
+
+                                }
+
+
+
+                                <br>
+
+
+
+                                💳 Crédito:
+
+                                R$ ${
+
+                                    formatarPreco(
+
+                                        registro.credito
+
+                                    )
+
+                                }
+
+
+
+                                <br>
+
+
+
+                                💳 Débito:
+
+                                R$ ${
+
+                                    formatarPreco(
+
+                                        registro.debito
+
+                                    )
+
+                                }
+
+
+
+                                <br>
+
+
+
+                                📱 PIX:
+
+                                R$ ${
+
+                                    formatarPreco(
+
+                                        registro.pix
+
+                                    )
+
+                                }
+
+
+
+                                <br>
+
+
+
+                                🕒 ${
+
+                                    formatarData(
+
+                                        registro.data
+
+                                    )
+
+                                }
+
+
+
+                            `;
+
+
+
+                        }
+
+
+
+
+
+                        div.appendChild(
+
+                            card
+
+                        );
+
+
+
+                    }
+
+                );
+
+
+
+        }
+
+
+
+
+
+        if (
+
+            !vendas.length &&
+
+            !historicoCaixa.length
+
+        ) {
+
+
+
+            div.innerHTML =
+
+                "<p>Nenhum registro encontrado.</p>";
+
+
+
+        }
+
+
+
+
+
+    } catch (erro) {
+
+
+
+        console.error(erro);
+
+
+
+        div.innerHTML =
+
+            `<p>
+
+                ❌ Erro ao carregar relatório:
+
+                ${erro.message}
+
+            </p>`;
+
+
+
+    }
+
+
+
+}
+
+
+
+
+
+/* ============================================================
+
+   LIMPAR RELATÓRIO
+
+\============================================================ */
+
+
+
+function limparRelatorio() {
+
+
+
+    abrirConfirmacao(
+
+
+
+        "ATENÇÃO: isso apagará os registros de Vendas e Caixa do Google Sheets. Deseja realmente continuar?",
+
+
+
+        async () => {
+
+
+
+            try {
+
+
+
+                await api.limparRelatorio();
+
+
+
+
+
+                vendas = [];
+
+
+
+                historicoCaixa = [];
+
+
+
+
+
+                await carregarCaixa();
+
+
+
+
+
+                await renderRelatorio();
+
+
+
+
+
+                mostrarModal(
+
+                    "Relatório limpo com sucesso!"
+
+                );
+
+
+
+
+
+            } catch (erro) {
+
+
+
+                console.error(erro);
+
+
+
+                mostrarModal(
+
+                    "Erro ao limpar relatório: " +
+
+                    erro.message
+
+                );
+
+
+
+            }
+
+
+
+        }
+
+
+
+    );
+
+
+
+}
+
+
+
+
+
+/* ============================================================
+
+   CONFIRMAÇÃO
+
+\============================================================ */
+
+
+
+function abrirConfirmacao(
+
+    texto,
+
+    callback
+
+) {
+
+
+
+    document
+
+        .getElementById(
+
+            "textoConfirmacao"
+
+        )
+
+        .innerText = texto;
+
+
+
+
+
+    acaoConfirmacao =
+
+        callback;
+
+
+
+
+
+    document
+
+        .getElementById(
+
+            "modalConfirmacao"
+
+        )
+
+        .style.display = "flex";
+
+
+
+}
+
+
+
+
+
+function fecharConfirmacao() {
+
+
+
+    document
+
+        .getElementById(
+
+            "modalConfirmacao"
+
+        )
+
+        .style.display = "none";
+
+
+
+
+
+    acaoConfirmacao =
+
+        null;
+
+
+
+}
+
+
+
+
+
+async function confirmarAcao() {
+
+
+
+    const acao =
+
+        acaoConfirmacao;
+
+
+
+
+
+    fecharConfirmacao();
+
+
+
+
+
+    if (acao) {
+
+
+
+        await acao();
+
+
+
+    }
+
+
+
+}
+
+
+
+
+
+/* ============================================================
+
+   ATUALIZAÇÃO AUTOMÁTICA
+
+\============================================================ */
+
+
+
+let intervaloAtualizacao = null;
+
+
+
+
+
+function iniciarAtualizacao() {
+
+
+
+    if (intervaloAtualizacao) {
+
+
+
+        clearInterval(
+
+            intervaloAtualizacao
+
+        );
+
+
+
+    }
+
+
+
+
+
+    intervaloAtualizacao =
+
+        setInterval(
+
+            async () => {
+
+
+
+                if (!usuarioLogado) {
+
+                    return;
+
+                }
+
+
+
+
+
+                try {
+
+
+
+                    await carregarMesas();
+
+
+
+
+
+                    /*
+
+                     * Se estiver no caixa,
+
+                     * atualiza status.
+
+                     */
+
+
+
+                    const telaCaixa =
+
+                        document
+
+                            .getElementById(
+
+                                "caixa"
+
+                            )
+
+                            .classList
+
+                            .contains(
+
+                                "ativa"
+
+                            );
+
+
+
+
+
+                    if (telaCaixa) {
+
+
+
+                        await carregarCaixa();
+
+
+
+                    }
+
+
+
+                } catch (erro) {
+
+
+
+                    console.error(
+
+                        erro
+
+                    );
+
+
+
+                }
+
+
+
+            },
+
+
+
+            5000
+
+
+
+        );
+
+
+
+}
+
+
+
+
+
+/* ============================================================
+
+   ENTER NO LOGIN
+
+\============================================================ */
+
+
+
+document
+
+    .getElementById(
+
+        "loginPass"
+
+    )
+
+    .addEventListener(
+
+        "keydown",
+
+        function(event) {
+
+
+
+            if (
+
+                event.key ===
+
+                "Enter"
+
+            ) {
+
+
+
+                fazerLogin();
+
+
+
+            }
+
+
+
+        }
+
+    );
+
+
+
+
+
+/* ============================================================
+
+   INICIALIZAÇÃO
+
+\============================================================ */
+
+
+
+window.onload = function() {
+
+
+
+    /*
+
+     * O sistema começa na tela
+
+     * de login.
+
+     */
+
+
+
+    document
+
+        .getElementById(
+
+            "loginTela"
+
+        )
+
+        .style.display = "flex";
+
+
+
+
+
+    /*
+
+     * Não carregamos dados protegidos
+
+     * antes do login.
+
+     */
+
+
+
+    iniciarAtualizacao();
+
+
+
+};
+
+</script>
+</body>
+</html>
